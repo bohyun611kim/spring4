@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Hello</title>
+    <title>Hello</title>
 </head>
 <body>
 인사말: ${greeting}
