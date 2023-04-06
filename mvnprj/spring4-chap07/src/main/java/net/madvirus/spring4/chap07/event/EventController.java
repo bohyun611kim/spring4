@@ -1,6 +1,7 @@
 package net.madvirus.spring4.chap07.event;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,18 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class EventController {
 
 
-    private  EventService eventService;
+    private final EventService eventService;
 
-    @Autowired
-    public EventController(EventService eventService) {
+    public EventController(@Qualifier("eventService") EventService eventService) {
         this.eventService = eventService;
     }
 
     @RequestMapping("/list")
-    public String list(Model model) {
-
-
-
+    public String list(SearchOption option, Model model) {
+        List<Event> eventList = eventService.getOpenedEventList();
+        model.addAttribute("eventList", eventList);
+        model.addAttribute("eventTypes", EventType.values());
         return "event/list";
     }
+
 }

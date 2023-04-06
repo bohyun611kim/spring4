@@ -7,7 +7,11 @@ import java.util.List;
  */
 public interface EventService {
 
-    Event getEvent(Long id);
+    Event getEvent(Long eventId);
+
+    List<Event> getRecommendedEventService();
 
     List<Event> getOpenedEventList();
+
+
 }
